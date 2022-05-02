@@ -36,6 +36,7 @@ function createItem(userId) {
   item.seller = userId;
   try {
     item.save();
+    console.log(`item ${item.slug} created`);
   } catch (err) {
     console.log(err, "Couldn't create item");
   }
@@ -46,6 +47,7 @@ async function populate() {
   for (let i = 0; i < NUMBER_OF_ITEMS; i++) {
     createItem(userId);
   }
+  console.log(`populated database with a user and ${NUMBER_OF_ITEMS} items`);
 }
 
 populate();
