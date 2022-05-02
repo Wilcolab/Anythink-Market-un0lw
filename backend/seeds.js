@@ -6,9 +6,11 @@ const NUMBER_OF_USERS = 100;
 mongoose.connect(process.env.MONGODB_URI);
 require('./models/User');
 require('./models/Item');
+require('./models/Comment');
 
 const User = mongoose.model('User');
 const Item = mongoose.model('Item');
+const Comment = mongoose.model('Comment');
 
 async function createUser() {
   const userUniqueId = crypto.randomUUID().split('-')[0];
@@ -37,8 +39,22 @@ async function createItem(userId) {
   try {
     await item.save();
     console.log(`item ${item.slug} created`);
+    return item._id;
   } catch (err) {
     console.log(err, "Couldn't create item");
+  }
+}
+
+async function createComment(userId, itemId) {
+  const comment = new Comment();
+  comment.body = 'some comment';
+  comment.seller = userId;
+  comment.item = itemId;
+  try {
+    await comment.save();
+    console.log(`comment for ${itemId} created`);
+  } catch (err) {
+    console.log(err, "Couldn't create comment");
   }
 }
 
@@ -46,10 +62,11 @@ async function populate() {
   let counter = 0;
   for (let i = 0; i < NUMBER_OF_USERS; i++) {
     const userId = await createUser();
-    await createItem(userId);
+    const itemId = await createItem(userId);
+    await createComment(userId, itemId);
     counter++;
   }
-  console.log(`populated database with ${counter} users and items`);
+  console.log(`populated database with ${counter} users, items and comments`);
 }
 
 (async () => {
