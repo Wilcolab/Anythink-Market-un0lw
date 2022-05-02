@@ -47,9 +47,10 @@ async function populate() {
     const userId = await createUser();
     createItem(userId);
   }
-  console.log(`populated database with a user and ${NUMBER_OF_ITEMS} items`);
+  console.log(`populated database with ${NUMBER_OF_USERS} users and items`);
 }
 
-populate();
-
-process.exit();
+(async () => {
+  await populate();
+  process.exit();
+})();
