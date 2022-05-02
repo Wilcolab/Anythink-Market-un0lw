@@ -18,7 +18,7 @@ async function createUser() {
   user.setPassword('1234');
   try {
     await user.save();
-    console.log(`user ${user.userName} created`);
+    console.log(`user ${user.username} created`);
     return user._id;
   } catch (err) {
     console.log(err, "Couldn't create user");
@@ -51,3 +51,5 @@ async function populate() {
 }
 
 populate();
+
+process.exit();
