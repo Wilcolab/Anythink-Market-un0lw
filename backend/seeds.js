@@ -16,8 +16,13 @@ async function createUser() {
   user.username = `test${userUniqueId}`;
   user.email = `test+${userUniqueId}@test.com`;
   user.setPassword('1234');
-  await user.save();
-  return user._id;
+  try {
+    await user.save();
+    console.log(`user ${user.userName} created`);
+    return user._id;
+  } catch (err) {
+    console.log(err, "Couldn't create user");
+  }
 }
 
 function createItem(userId) {
@@ -29,7 +34,11 @@ function createItem(userId) {
   item.image = 'https://placebear.com/200/200';
   item.tagList = ['bear', 'test'];
   item.seller = userId;
-  item.save();
+  try {
+    item.save();
+  } catch (err) {
+    console.log(err, "Couldn't create item");
+  }
 }
 
 async function populate() {
@@ -40,4 +49,3 @@ async function populate() {
 }
 
 populate();
-
