@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 const mongoose = require('mongoose');
 
-const NUMBER_OF_ITEMS = 42;
+const NUMBER_OF_USERS = 100;
 
 mongoose.connect(process.env.MONGODB_URI);
 require('./models/User');
@@ -43,8 +43,8 @@ function createItem(userId) {
 }
 
 async function populate() {
-  const userId = await createUser();
-  for (let i = 0; i < NUMBER_OF_ITEMS; i++) {
+  for (let i = 0; i < NUMBER_OF_USERS; i++) {
+    const userId = await createUser();
     createItem(userId);
   }
   console.log(`populated database with a user and ${NUMBER_OF_ITEMS} items`);
