@@ -25,7 +25,7 @@ async function createUser() {
   }
 }
 
-function createItem(userId) {
+async function createItem(userId) {
   const itemUniqueId = crypto.randomUUID().split('-')[0];
   const item = new Item();
   item.slug = `itemSlug${itemUniqueId}`;
@@ -35,7 +35,7 @@ function createItem(userId) {
   item.tagList = ['bear', 'test'];
   item.seller = userId;
   try {
-    item.save();
+    await item.save();
     console.log(`item ${item.slug} created`);
   } catch (err) {
     console.log(err, "Couldn't create item");
@@ -43,11 +43,13 @@ function createItem(userId) {
 }
 
 async function populate() {
+  let counter = 0;
   for (let i = 0; i < NUMBER_OF_USERS; i++) {
     const userId = await createUser();
-    createItem(userId);
+    await createItem(userId);
+    counter++;
   }
-  console.log(`populated database with ${NUMBER_OF_USERS} users and items`);
+  console.log(`populated database with ${counter} users and items`);
 }
 
 (async () => {
