@@ -1,22 +1,22 @@
-import { useState, useEffect } from 'react';
-import { SET_PAGE } from '../../constants/actionTypes';
-import { connect } from 'react-redux';
-import agent from '../../agent';
+import { useState, useEffect } from "react";
+import { SET_PAGE } from "../../constants/actionTypes";
+import { connect } from "react-redux";
+import agent from "../../agent";
 
 const MIN_SEARCH_LENGTH = 3;
 
-const mapDispatchToProps = dispatch => ({
-  onSearch: searchInput =>
+const mapDispatchToProps = (dispatch) => ({
+  onSearch: (searchInput) =>
     dispatch({
       type: SET_PAGE,
-      tab: 'all',
+      tab: "all",
       pager: agent.Items.all,
-      payload: agent.Items.all(undefined, searchInput)
-    })
+      payload: agent.Items.all(undefined, searchInput),
+    }),
 });
 
 const SearchBox = ({ onSearch }) => {
-  const [searchInput, setSearchInput] = useState('');
+  const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
     if (searchInput.trim().length >= MIN_SEARCH_LENGTH) {
@@ -30,7 +30,7 @@ const SearchBox = ({ onSearch }) => {
         className="rounded-lg border-0"
         type="text"
         value={searchInput}
-        onChange={e => setSearchInput(e.target.value)}
+        onChange={(e) => setSearchInput(e.target.value)}
         placeholder="What is it that you truly desire?"
       />
     </div>
