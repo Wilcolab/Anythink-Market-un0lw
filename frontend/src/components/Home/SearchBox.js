@@ -28,6 +28,7 @@ const SearchBox = ({ onSearch }) => {
     <div className="p-2 d-inline mx-2 bg-white w-100" id="search-box">
       <input
         className="rounded-lg border-0"
+        id="search-box"
         type="text"
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
