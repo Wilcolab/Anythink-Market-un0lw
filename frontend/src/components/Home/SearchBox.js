@@ -12,6 +12,7 @@ const mapDispatchToProps = (dispatch) => ({
       tab: "all",
       pager: agent.Items.all,
       payload: agent.Items.all(undefined, searchInput),
+      search: searchInput,
     }),
 });
 

@@ -35,6 +35,7 @@ const reducer = (state = {}, action) => {
         items: action.payload.items,
         itemsCount: action.payload.itemsCount,
         currentPage: action.page,
+        search: action.search,
       };
     case APPLY_TAG_FILTER:
       return {
