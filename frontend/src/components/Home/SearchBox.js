@@ -23,6 +23,9 @@ const SearchBox = ({ onSearch }) => {
     if (searchInput.trim().length >= MIN_SEARCH_LENGTH) {
       onSearch(searchInput);
     }
+    if (searchInput.trim().length === 0) {
+      onSearch(undefined);
+    }
   }, [searchInput, onSearch]);
 
   return (
