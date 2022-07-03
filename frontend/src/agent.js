@@ -53,7 +53,7 @@ const omitSlug = (item) => Object.assign({}, item, { slug: undefined });
 const Items = {
   all: (page, search) =>
     requests.get(
-      `/items?${limit(1000, page)}${search ? `&title=${search}}` : ""}`
+      `/items?${limit(1000, page)}${search ? `&title=${search}` : ""}`
     ),
   bySeller: (seller, page) =>
     requests.get(`/items?seller=${encode(seller)}&${limit(500, page)}`),
