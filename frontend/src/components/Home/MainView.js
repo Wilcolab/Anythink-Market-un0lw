@@ -29,7 +29,11 @@ const YourFeedTab = (props) => {
 const GlobalFeedTab = (props) => {
   const clickHandler = (ev) => {
     ev.preventDefault();
-    props.onTabClick("all", agent.Items.all, agent.Items.all());
+    props.onTabClick(
+      "all",
+      agent.Items.all,
+      agent.Items.all(undefined, props.search)
+    );
   };
   return (
     <li className="nav-item">
@@ -80,7 +84,11 @@ const MainView = (props) => {
             onTabClick={props.onTabClick}
           />
 
-          <GlobalFeedTab tab={props.tab} onTabClick={props.onTabClick} />
+          <GlobalFeedTab
+            tab={props.tab}
+            onTabClick={props.onTabClick}
+            search={props.search}
+          />
 
           <TagFilterTab tag={props.tag} />
         </ul>
