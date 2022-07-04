@@ -8,18 +8,20 @@ const ItemList = (props) => {
   }
 
   if (props.items.length === 0 && !props.search) {
-    return <div className="py-4 no-items">No items are here... yet.</div>;
+    return (
+      <div id="empty" className="py-4 no-items">
+        No items are here... yet.
+      </div>
+    );
   }
 
   if (props.itemsCount === 0 && props.search) {
     return (
       <div id="empty" className="py-4 no-items">
-        No items found for{" "}
-        <span style={{ fontWeight: "bold" }}>{props.search}</span>
+        No items found for <strong>{props.search}</strong>
       </div>
     );
   }
-
   return (
     <div className="container py-2">
       <div className="row">
@@ -36,6 +38,7 @@ const ItemList = (props) => {
         pager={props.pager}
         itemsCount={props.itemsCount}
         currentPage={props.currentPage}
+        search={props.search}
       />
     </div>
   );
