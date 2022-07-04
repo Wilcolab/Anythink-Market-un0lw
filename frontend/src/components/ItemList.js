@@ -15,7 +15,7 @@ const ItemList = (props) => {
     );
   }
 
-  if (props.itemsCount === 0 && props.search) {
+  if (props.items.length === 0 && props.search) {
     return (
       <div id="empty" className="py-4 no-items">
         No items found for <strong>{props.search}</strong>
