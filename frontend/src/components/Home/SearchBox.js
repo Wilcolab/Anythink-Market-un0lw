@@ -29,7 +29,7 @@ const SearchBox = ({ onSearch }) => {
   }, [searchInput, onSearch]);
 
   return (
-    <div className="p-2 d-inline mx-2 bg-white w-100" id="search-box">
+    <div className="p-2 d-inline mx-2 bg-white w-100">
       <input
         className="rounded-lg border-0"
         id="search-box"
