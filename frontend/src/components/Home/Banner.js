@@ -9,7 +9,7 @@ const Banner = () => {
       <div className="container p-4 text-center">
         <img src={logo} alt="banner" />
         <div>
-          <span id="get-part">
+          <span>
             A place to{" "}
             <span
               id="get-part"
