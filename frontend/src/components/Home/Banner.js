@@ -9,12 +9,7 @@ const Banner = () => {
       <div className="container p-4 text-center">
         <img src={logo} alt="banner" />
         <div>
-          <span
-            id="get-part"
-            onClick={() => {
-              setIsSearchBoxVisible(true);
-            }}
-          >
+          <span id="get-part" onClick={() => setIsSearchBoxVisible(true)}>
             A place to get
           </span>
           {isSearchBoxVisible && <SearchBox />}
