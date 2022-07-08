@@ -12,6 +12,7 @@ const mapDispatchToProps = (dispatch) => ({
       tab: "all",
       pager: agent.Items.all,
       payload: agent.Items.all(undefined, searchInput),
+      search: searchInput,
     }),
 });
 
@@ -22,10 +23,13 @@ const SearchBox = ({ onSearch }) => {
     if (searchInput.trim().length >= MIN_SEARCH_LENGTH) {
       onSearch(searchInput);
     }
+    if (searchInput.trim().length === 0) {
+      onSearch(undefined);
+    }
   }, [searchInput, onSearch]);
 
   return (
-    <div className="p-2 d-inline mx-2 bg-white w-100" id="search-box">
+    <div className="p-2 d-inline mx-2 bg-white w-100">
       <input
         className="rounded-lg border-0"
         id="search-box"
