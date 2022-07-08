@@ -12,7 +12,7 @@ const Banner = () => {
           <span id="get-part">
             A place to{" "}
             <span
-              id="get"
+              id="get-part"
               onClick={() => {
                 setIsSearchBoxVisible(true);
               }}
