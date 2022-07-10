@@ -6,7 +6,7 @@ const Banner = () => {
   const [isSearchBoxVisible, setIsSearchBoxVisible] = useState(false);
 
   const showSearchBox = (event) => {
-    setIsSearchBoxVisible(true);
+    setIsSearchBoxVisible(!isSearchBoxVisible);
   };
 
   return (
