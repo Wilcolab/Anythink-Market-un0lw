@@ -5,8 +5,7 @@ import SearchBox from "./SearchBox";
 const Banner = () => {
   const [isSearchBoxVisible, setIsSearchBoxVisible] = useState(false);
 
-  // eslint-disable-next-line no-unused-vars
-  const showSearchBox = () => {
+  const showSearchBox = (event) => {
     setIsSearchBoxVisible(true);
   };
 
@@ -15,7 +14,9 @@ const Banner = () => {
       <div className="container p-4 text-center">
         <img src={logo} alt="banner" />
         <div>
-          <span id="get-part">A place to get</span>
+          <span id="get-part" onClick={showSearchBox}>
+            A place to get
+          </span>
           {isSearchBoxVisible && <SearchBox />}
           <span> the cool stuff.</span>
         </div>
