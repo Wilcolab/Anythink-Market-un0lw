@@ -12,6 +12,8 @@ var http = require("http"),
 
 var isProduction = process.env.NODE_ENV === "production";
 
+isProduction && require('newrelic');
+
 // Create global app object
 var app = express();
 
