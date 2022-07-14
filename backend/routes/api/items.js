@@ -70,31 +70,25 @@ router.get("/", auth.optional, async function (req, res, next) {
     query._id = { $in: [] };
   }
 
-  const [items, itemsCount, user] = await Promise.all([
-    Item.aggregate([
-      { $match: query },
-      { $limit: Number(limit) },
-      { $skip: Number(offset) },
-      { $sort: { createdAt: -1 } },
-      {
-        $lookup: {
-          from: "users",
-          localField: "seller",
-          foreignField: "_id",
-          as: "seller",
-        },
+  const items = await Item.aggregate([
+    { $match: query },
+    { $sort: { createdAt: -1 } },
+    { $limit: Number(limit) },
+    { $skip: Number(offset) },
+    {
+      $lookup: {
+        from: "users",
+        localField: "seller",
+        foreignField: "_id",
+        as: "seller",
       },
-    ]).exec(),
-    Item.count(query).exec(),
-    req.payload ? User.findById(req.payload.id) : null,
-  ]);
+    },
+  ]).exec();
 
-  return res
-    .json({
-      items,
-      itemsCount,
-    })
-    .catch(next);
+  return res.json({
+    items,
+    itemsCount: items.length,
+  });
 });
 
 router.get("/feed", auth.required, function(req, res, next) {
