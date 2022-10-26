@@ -1,0 +1,3 @@
+const isValidUrl = () => {
+  return true;
+};
