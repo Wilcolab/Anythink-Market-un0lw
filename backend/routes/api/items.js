@@ -149,17 +149,22 @@ router.post("/", auth.required, function(req, res, next) {
       if (!user) {
         return res.sendStatus(401);
       }
-      
-      if (!req.body.item?.image) {        
-        const { data } = await openAi.createCompletion({          
-          prompt: req.body.item?.title || "raccoon flying in space towards mars",
-          n: 1,
-          size: "256x256",
-        });
-        req.body.item.image = data.data[0].url
+      var item = new Item(req.body.item);
+
+      if (!item?.image) {      
+        try {  
+          const  response = await openAi.createImage({          
+            prompt: item?.title || "raccoon flying in space towards mars",
+            n: 1,
+            size: "256x256",
+          }); 
+          item.image = response.data.data[0].url
+        }catch (e) {
+          console.log(e)
+          item.image = "https://curiodyssey.org/wp-content/uploads/2017/03/Mammals-Raccoon.jpg";
+        }
       }
 
-      var item = new Item(req.body.item);
       item.seller = user;
 
       return item.save().then(function() {
