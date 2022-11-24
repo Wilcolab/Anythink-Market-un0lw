@@ -149,18 +149,17 @@ router.post("/", auth.required, function(req, res, next) {
       if (!user) {
         return res.sendStatus(401);
       }
-
-      var item = new Item(req.body.item);
-
-      if(!item.image){        
+      
+      if (!req.body.item?.image) {        
         const { data } = await openAi.createCompletion({          
-          prompt: item?.title || "raccoon flying in space towards mars",
+          prompt: req.body.item?.title || "raccoon flying in space towards mars",
           n: 1,
           size: "256x256",
         });
-        item.image =data.data[0].url
+        req.body.item.image = data.data[0].url
       }
 
+      var item = new Item(req.body.item);
       item.seller = user;
 
       return item.save().then(function() {
