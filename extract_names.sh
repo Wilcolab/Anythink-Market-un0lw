@@ -5,4 +5,4 @@ if [ $# -eq 0 ]; then
     exit 1
 fi
 
-awk -F',' 'tolower($4) ~ /@amazon.com$/ {print $3, $2}' "$1" >"names.txt"
+awk -F',' 'tolower($4) ~ /@amazon.com$/ {print $3, $2}' "$1" >"extract_names.txt"
