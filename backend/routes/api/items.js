@@ -82,12 +82,12 @@ router.get("/", auth.optional, function(req, res, next) {
       ]).then(async function(results) {
         var items = results[0];
         var itemsCount = results[1];
-        var user = results[2];
-        user.isVerified = user.isVerified ?? false;
+        var user = results[2];        
         return res.json({
           items: await Promise.all(
             items.map(async function(item) {
               item.seller = await User.findById(item.seller);
+              item.seller.isVerified = item.seller.isVerified ?? false;
               return item.toJSONFor(user);
             })
           ),
