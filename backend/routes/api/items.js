@@ -82,7 +82,7 @@ router.get("/", auth.optional, function(req, res, next) {
       ]).then(async function(results) {
         var items = results[0];
         var itemsCount = results[1];
-        var user = results[2];
+        var user = results[2];        
         return res.json({
           items: await Promise.all(
             items.map(async function(item) {
