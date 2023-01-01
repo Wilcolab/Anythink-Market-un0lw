@@ -1,1 +1,4 @@
-ALTER TABLE users ALTER COLUMN nickname  TYPE VARCHAR(20);
+ALTER TABLE users
+ALTER nickname
+TYPE VARCHAR(20);
+
