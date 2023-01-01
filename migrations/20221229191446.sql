@@ -1,2 +1,2 @@
-ALTER TABLE users DROP COLUMN nickname;
-ALTER TABLE users ADD COLUMN nickname varchar(20) NOT NULL;
+UPDATE users SET nickname = 'nic' WHERE nickname IS NULL;
+ALTER TABLE users ALTER COLUMN nickname SET not null
