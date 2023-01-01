@@ -1,4 +1,2 @@
-ALTER TABLE users
-ALTER nickname
-TYPE VARCHAR(20);
-
+ALTER TABLE users DROP COLUMN nickname;
+ALTER TABLE users ADD COLUMN nickname varchar(20) NOT NULL;
