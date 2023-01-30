@@ -4,9 +4,10 @@ jobs:
   build-and-test:
     docker:
       - image: cimg/node:16.18
-    working_directory: ~/Anythink-Market-un0lw/frontend
+    working_directory: ~/Anythink-Market-un0lw
     steps:
-      - checkout
+      - checkout:
+          path: ~/Anythink-Market-un0lw/frontend
       - run:
           command: ls
       - run:
