@@ -5,13 +5,14 @@ jobs:
     docker:
       - image: cimg/node:16.18
     steps:
-      - checkout
+      - checkout:
+          path: frontend
       - run:
           name: Install deps
-          command: cd frontend && yarn install
+          command: yarn install
       - run:
           name: Run tests
-          command: cd frontend && yarn test
+          command: yarn test
 
 workflows:
   build-and-test:
