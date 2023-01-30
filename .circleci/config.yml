@@ -2,9 +2,9 @@ version: 2.1
 
 jobs:
   build-and-test:
+    working_directory: /frontend
     docker:
       - image: cimg/node:16.18
-    path: /frontend
     steps:
       - checkout
       - run:
