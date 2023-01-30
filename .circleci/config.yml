@@ -4,7 +4,7 @@ jobs:
   build-and-test:
     docker:
       - image: cimg/node:16.18
-    working_directory: frontend
+    working_directory: ~/project/frontend
     steps:
       - checkout
       - run:
